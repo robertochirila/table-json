@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Table from "./components/Table";
+import TableUsers from "./components/TableUsers";
 
 const Wrapper = styled.div`
      background: rgb(9, 32, 71);
@@ -23,7 +23,7 @@ function App() {
      };
      return (
           <Wrapper>
-               {users.length > 0 ? <Table users={users} /> : <></>}
+               {users.length > 0 ? <TableUsers users={users} /> : <></>}
           </Wrapper>
      );
 }
