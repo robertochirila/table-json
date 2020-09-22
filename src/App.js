@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import TableUsers from "./components/TableUsers";
+
+const Wrapper = styled.div`
+     background: rgb(9, 32, 71);
+     height: 100vh;
+     overflow: auto;
+`;
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+     const [users, setUsers] = useState([]);
+     useEffect(() => {
+          fetchData();
+     }, []);
+     const fetchData = () => {
+          console.log("fetch data");
+          fetch("https://jsonplaceholder.typicode.com/users")
+               .then((response) => response.json())
+               .then((users) => {
+                    setUsers(users);
+               });
+     };
+     return (
+          <Wrapper>
+               {users.length > 0 ? <TableUsers users={users} /> : <></>}
+          </Wrapper>
+     );
 }
 
 export default App;
